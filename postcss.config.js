@@ -5,6 +5,6 @@ module.exports = { //eslint-disable-line no-undef
         'postcss-simple-vars': {},
         'postcss-calc': {},
         'postcss-hexrgba': {},
-        'autoprefixer': {}
-    }
+        'autoprefixer': {},
+    },
 };

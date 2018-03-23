@@ -1,8 +1,7 @@
-
 import React from 'react';
-import Application from './components/Application';
 import {render} from 'react-dom';
+import Application from './components/Application';
 
 const applicationElement = document.getElementById('app');
 
-render(<Application/>, applicationElement);
+render(<Application />, applicationElement);
