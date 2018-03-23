@@ -21,7 +21,6 @@
         "symfony/validator": "^4.0",
         "symfony/swiftmailer-bundle": "^3.1",
         "symfony/web-link": "^4.0",
-        "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
@@ -30,7 +29,8 @@
         "symfony/dotenv": "^4.0",
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^4.0",
-        "symfony/profiler-pack": "*"
+        "symfony/profiler-pack": "*",
+        "symfony/web-server-bundle": "^4.0"
     },
     "config": {
         "preferred-install": {
@@ -71,7 +71,7 @@
     },
     "extra": {
         "symfony": {
-            "id": "",
+            "id": "01C99GDBRWBDPBFN2VQ0SMK3QA",
             "allow-contrib": false
         },
         "symfony.id": "01C91273849XHRQSFEHTZ1PGBC"

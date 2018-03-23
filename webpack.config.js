@@ -1,24 +1,48 @@
-var Encore = require('@symfony/webpack-encore');
+const path = require('path');
+const CleanObsoleteChunksPlugin = require('webpack-clean-obsolete-chunks');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
-Encore
-    // the project directory where compiled assets will be stored
-    .setOutputPath('public/build/')
-    // the public path used by the web server to access the previous directory
-    .setPublicPath('/build')
-    .cleanupOutputBeforeBuild()
-    .enableSourceMaps(!Encore.isProduction())
-    // uncomment to create hashed filenames (e.g. app.abc123.css)
-    // .enableVersioning(Encore.isProduction())
 
-    // uncomment to define the assets of the project
-    // .addEntry('js/app', './assets/js/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
+const basePath = 'build';
 
-    // uncomment if you use Sass/SCSS files
-    // .enableSassLoader()
-
-    // uncomment for legacy applications that require $/jQuery as a global variable
-    // .autoProvidejQuery()
-;
-
-module.exports = Encore.getWebpackConfig();
+module.exports = {
+    entry: './assets/js/index.js',
+    output: {
+        path: path.resolve(__dirname, 'public'),
+        filename: basePath + '/[name].[chunkhash].js'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+            },
+            {
+                test: /\.(scss)$/,
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                importLoaders: 1,
+                                camelCase: true,
+                                localIdentName: '[local]--[hash:base64:10]',
+                            }
+                        },
+                        'postcss-loader'
+                    ]
+                })
+            }
+        ]
+    },
+    plugins: [
+        new CleanObsoleteChunksPlugin(),
+        new ManifestPlugin({
+            fileName: basePath + '/manifest.json'
+        }),
+        new ExtractTextPlugin(basePath + '/main.[hash].css')
+    ]
+};
