@@ -4,7 +4,7 @@
 
 ### Install dependencies
 
-To install the frontend dependency you need [npm](https://www.npmjs.com/get-npm) installed.
+To install the frontend dependencies you need [npm](https://www.npmjs.com/get-npm) installed.
 After you install it run the following command in the project root directory:
 
 ```bash
