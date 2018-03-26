@@ -1,0 +1,15 @@
+@import '../../containers/Application/colors.scss';
+
+$inputLabelBorderColor: $sail;
+
+.label {
+    display: block;
+    width: 100%;
+    border: 1px solid $inputLabelBorderColor;
+}
+
+.input {
+    border: 0;
+    display: block;
+    width: 100%;
+}

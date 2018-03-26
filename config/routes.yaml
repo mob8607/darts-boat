@@ -1,4 +1,7 @@
 # Api
+login:
+    path:       /api/login
+    controller: App\Controller\SecurityController::login
 
 # Application
 index:

@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import navigationStyles from './navigation.scss';
 
-export default class Dashboard extends React.PureComponent {
+export default class Item extends React.PureComponent {
+    static propTypes = {
+        to: PropTypes.string.isRequired,
+    };
+
     render() {
         const {to} = this.props;
 

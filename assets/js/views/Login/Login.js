@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginForm from '../../containers/LoginForm/LoginForm';
 
 export default class Login extends React.Component {
     componentDidMount() {
@@ -6,6 +7,12 @@ export default class Login extends React.Component {
     }
 
     render() {
-        return (<div>Login</div>);
+        return (
+            <div>
+                <h1>Login</h1>
+
+                <LoginForm />
+            </div>
+        );
     }
 }

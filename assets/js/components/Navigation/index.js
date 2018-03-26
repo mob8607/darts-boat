@@ -1,3 +1,3 @@
-import Dashboard from './Navigation';
+import Navigation from './Navigation';
 
-export default Dashboard;
+export default Navigation;
