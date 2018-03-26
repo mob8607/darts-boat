@@ -1,0 +1,9 @@
+stages:
+    - code-check
+
+lint-frontend:
+    stage: code-check
+    script:
+        - npm install
+        - npm run lint:js
+        - npm run lint:scss
