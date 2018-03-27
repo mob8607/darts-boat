@@ -4,11 +4,11 @@ import inputStyles from './input.scss';
 
 export default class Input extends React.PureComponent {
     static propTypes = {
+        onChange: PropTypes.func.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string,
         placeholder: PropTypes.string,
         value: PropTypes.string,
-        onChange: PropTypes.func,
     };
 
     static defaultProps = {
@@ -16,9 +16,7 @@ export default class Input extends React.PureComponent {
     };
 
     handleChange = (event) => {
-        if (this.props.onChange) {
-            this.props.onChange(event.currentTarget.value || undefined, event);
-        }
+        this.props.onChange(event.currentTarget.value || undefined, event, this.props.name);
     };
 
     render() {
