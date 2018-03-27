@@ -17,3 +17,8 @@ lint-frontend:
         - npm install
         - npm run lint:js
         - npm run lint:scss
+
+test-composer:
+    stage: code-check
+    script:
+        - composer install
