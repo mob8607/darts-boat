@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends Controller
@@ -20,7 +20,7 @@ class SecurityController extends Controller
             return new Response(500);
         }
 
-        return new Response([
+        return new JsonResponse([
             'username' => $user->getUsername(),
         ]);
     }
