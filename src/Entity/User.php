@@ -40,7 +40,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function setPassword(string $password): self
     {
-        $this->password = $pwd;
+        $this->password = $password;
 
         return $this;
     }
