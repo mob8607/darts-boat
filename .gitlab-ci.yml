@@ -1,6 +1,16 @@
 stages:
     - code-check
 
+phpmd:
+    stage: code-check
+    script:
+        - phpmd-default-php7.1
+
+phpcs:
+    stage: code-check
+    script:
+        - phpcs-default
+
 lint-frontend:
     stage: code-check
     script:
