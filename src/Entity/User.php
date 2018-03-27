@@ -6,14 +6,29 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 class User implements AdvancedUserInterface, \Serializable
 {
+    /**
+     * @var int
+     */
     private $id;
 
+    /**
+     * @var string
+     */
     private $username;
 
+    /**
+     * @var string
+     */
     private $password;
 
+    /**
+     * @var \DateTime
+     */
     private $lastLogin;
 
+    /**
+     * @var bool
+     */
     private $locked;
 
     public function getId()
