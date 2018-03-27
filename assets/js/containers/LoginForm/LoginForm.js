@@ -53,7 +53,7 @@ export default class LoginForm extends React.Component {
                             />
 
                             <Button type="submit">
-                            Login
+                                Login
                             </Button>
                         </form>
                 }
