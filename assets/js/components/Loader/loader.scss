@@ -1,0 +1,7 @@
+@import '../../containers/Application/colors.scss';
+
+$loaderColor: $white;
+
+.loader {
+    color: $loaderColor;
+}

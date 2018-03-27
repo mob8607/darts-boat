@@ -1,0 +1,14 @@
+@import '../../containers/Application/colors.scss';
+
+$buttonActiveBackgroundColor: $sail;
+$buttonActiveColor: $white;
+$buttonBorderColor: $sail;
+
+.button {
+    border: 1px solid $buttonBorderColor;
+
+    &:active {
+        background: $buttonActiveBackgroundColor;
+        color: $buttonActiveColor;
+    }
+}

@@ -2,6 +2,8 @@
 
 ##### Unreleased
 
+- FEATURE: Add security and user entity with example Login view. #41 [!3]
+- FEATURE: Add react-router to frontend setup with example implementation. #41 [!3]
 - FEATURE: Added FOS Rest and JMS Serializer. #41 [!8]
 - FEATURE: Add composer install to GitLab CI. #41 [!7]
 - FEATURE: Added PHPMD and PHPCS to GitLab CI. #41 [!4]

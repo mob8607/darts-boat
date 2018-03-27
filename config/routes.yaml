@@ -1,3 +1,15 @@
+# Api
+login:
+    path:       /api/login
+    controller: App\Controller\SecurityController::login
+
+# Application
 index:
     path: /
     controller: App\Controller\AppController::index
+
+application:
+    path: /{route}
+    controller: App\Controller\AppController::index
+    requirements:
+        token: .+
