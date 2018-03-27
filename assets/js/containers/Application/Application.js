@@ -17,15 +17,21 @@ export default class Application extends React.Component {
                 <div>
                     {
                         SecurityStore.user ? (
-                            <Navigation>
-                                <Navigation.Item to="/">
-                                    Dashboard
-                                </Navigation.Item>
+                            <div>
+                                <Navigation>
+                                    <Navigation.Item to="/">
+                                        Dashboard
+                                    </Navigation.Item>
 
-                                <Navigation.Item to="/timetracking">
-                                    TimeTracking
-                                </Navigation.Item>
-                            </Navigation>
+                                    <Navigation.Item to="/timetracking">
+                                        TimeTracking
+                                    </Navigation.Item>
+                                </Navigation>
+
+                                <a href="/logout">
+                                    {SecurityStore.user.username}
+                                </a>
+                            </div>
                         ) : null
                     }
 
