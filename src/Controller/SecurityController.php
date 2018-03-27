@@ -12,7 +12,7 @@ class SecurityController extends Controller
     /**
      * @see https://symfony.com/doc/current/security/json_login_setup.html
      */
-    public function login(Request $request)
+    public function login()
     {
         $user = $this->getUser();
 
