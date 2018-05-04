@@ -67,6 +67,18 @@ class Team
     }
 
     /**
+     * @param Player $player
+     *
+     * @return $this
+     */
+    public function addPlayer(Player $player)
+    {
+        $this->players[] = $player;
+
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getGames()
