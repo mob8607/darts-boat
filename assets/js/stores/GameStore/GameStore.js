@@ -1,4 +1,4 @@
-import {observable, action} from 'mobx';
+import { observable, action } from 'mobx';
 import Requester from '../../services/Requester/index';
 
 class GameStore {
@@ -20,7 +20,7 @@ class GameStore {
                             'name': 'Team 1',
                             'players': [
                                 {
-                                    'name' : 'Markus',
+                                    'name': 'Markus',
                                 },
                             ],
                         },
@@ -28,12 +28,37 @@ class GameStore {
                             'name': 'Team 2',
                             'players': [
                                 {
-                                    'name' : 'Patrick',
+                                    'name': 'Patrick',
                                 },
                             ],
                         },
                     ],
                     'gameType': 'default',
+                }
+            ).then((value) => {
+                this.setLoading(false);
+                console.log(value);
+            });
+        } catch (e) {
+            this.setError(e);
+            this.setLoading();
+        }
+    };
+
+    @action submitScore = (score) => {
+        this.setLoading(true);
+        this.setError(null);
+
+        try {
+            Requester.post(
+                '/api/shoots',
+                {
+                    'gameToken': 9,
+                    'score': score,
+                    'multiplier': 3,
+                    'player': {
+                        'name': 'Mathias'
+                    }
                 }
             ).then((value) => {
                 this.setLoading(false);
