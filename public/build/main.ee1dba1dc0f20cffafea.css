@@ -371,43 +371,6 @@ body {
   ATTENTION ATTENTION: Please order this list alphabetically
 */
 
-.label--1Wex8iQaVW {
-    display: block;
-    width: 100%;
-    border: 1px solid #b0ccfc;
-}
-
-.input--3n1i9LvRR1 {
-    border: 0;
-    display: block;
-    width: 100%;
-}
-/**
-  Variables are named after http://chir.ag/projects/name-that-color/
-  ATTENTION ATTENTION: Please order this list alphabetically
-*/
-
-.button--1k-IM3qpjF {
-    border: 1px solid #b0ccfc;
-}
-
-.button--1k-IM3qpjF:active {
-        background: #b0ccfc;
-        color: #fff;
-    }
-/**
-  Variables are named after http://chir.ag/projects/name-that-color/
-  ATTENTION ATTENTION: Please order this list alphabetically
-*/
-
-.loader--2fEM63A5OS {
-    color: #fff;
-}
-/**
-  Variables are named after http://chir.ag/projects/name-that-color/
-  ATTENTION ATTENTION: Please order this list alphabetically
-*/
-
 .navigation--3unnNRs9p6 {
     background-color: #b0ccfc;
     display: -ms-flexbox;

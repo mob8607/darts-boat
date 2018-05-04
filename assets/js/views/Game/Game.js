@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default class Dashboard extends React.Component {
+export default class Game extends React.Component {
     componentDidMount() {
-        document.title = 'Dashboard';
+        document.title = 'Game';
     }
 
     render() {
         return (<div>
-          Dashboard
+          Game
         </div>);
     }
 }
