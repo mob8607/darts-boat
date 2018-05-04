@@ -15,6 +15,11 @@ class Set
     private $game;
 
     /**
+     * @var Player
+     */
+    private $winner;
+
+    /**
      * @return int
      */
     public function getId()
@@ -38,6 +43,26 @@ class Set
     public function setGame($game)
     {
         $this->game = $game;
+
+        return $this;
+    }
+
+    /**
+     * @return null|Player
+     */
+    public function getWinner(): ?Player
+    {
+        return $this->winner;
+    }
+
+    /**
+     * @param null|Player $winner
+     *
+     * @return self
+     */
+    public function setWinner(?Player $winner): Set
+    {
+        $this->winner = $winner;
 
         return $this;
     }

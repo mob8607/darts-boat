@@ -20,6 +20,11 @@ class Round
     private $score;
 
     /**
+     * @var Player
+     */
+    private $player;
+
+    /**
      * @return int
      */
     public function getId()
@@ -63,6 +68,26 @@ class Round
     public function setLeg($leg)
     {
         $this->leg = $leg;
+
+        return $this;
+    }
+
+    /**
+     * @return Player
+     */
+    public function getPlayer(): Player
+    {
+        return $this->player;
+    }
+
+    /**
+     * @param Player $player
+     *
+     * @return self
+     */
+    public function setPlayer(Player $player): self
+    {
+        $this->player = $player;
 
         return $this;
     }

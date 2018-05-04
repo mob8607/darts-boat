@@ -12,6 +12,11 @@ class Game
     private $teams;
 
     /**
+     * @var Player
+     */
+    private $winner;
+
+    /**
      * @return int
      */
     public function getId()
@@ -47,6 +52,26 @@ class Game
     public function addTeam(Team $team): self
     {
         $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * @return null|Player
+     */
+    public function getWinner(): ?Player
+    {
+        return $this->winner;
+    }
+
+    /**
+     * @param null|Player $winner
+     *
+     * @return self
+     */
+    public function setWinner(?Player $winner): Game
+    {
+        $this->winner = $winner;
 
         return $this;
     }
