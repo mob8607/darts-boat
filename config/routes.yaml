@@ -13,3 +13,9 @@ application:
     controller: App\Controller\AppController::index
     requirements:
         token: .+
+
+games:
+    type: rest
+    prefix: api
+    resource: App\Controller\GameController
+

@@ -12,17 +12,6 @@
             <div id="app"></div>
         {% endblock %}
         {% block javascripts %}
-            <script>
-                {% autoescape 'js' %}
-                    window.user = null;
-                    {% if app.user %}
-                        window.user = {
-                            username: "{{ app.user.username }}"
-                        };
-                    {% endif %}
-                {% endautoescape %}
-            </script>
-
             <script src="{{ asset('main.js') }}"></script>
         {% endblock %}
     </body>
