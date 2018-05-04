@@ -5,6 +5,7 @@ import Select from '../../components/Select';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import GameStore from '../../stores/GameStore';
+import { Redirect } from 'react-router-dom';
 
 @observer
 export default class NewGameForm extends React.Component {
@@ -26,6 +27,10 @@ export default class NewGameForm extends React.Component {
     };
 
     render() {
+        if (GameStore.gameToken) {
+            return <Redirect to="/game" />;
+        }
+
         return (
             <div>
                 {

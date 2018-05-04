@@ -4,7 +4,7 @@ import Requester from '../../services/Requester/index';
 class GameStore {
     @observable loading = false;
     @observable error;
-    @observable game;
+    @observable gameToken;
 
     @action startGame = (name, gameMode) => {
         console.log(name, gameMode);
@@ -37,7 +37,7 @@ class GameStore {
                 }
             ).then((value) => {
                 this.setLoading(false);
-                console.log(value);
+                this.gameToken = value.gameToken;
             });
         } catch (e) {
             this.setError(e);
@@ -53,7 +53,7 @@ class GameStore {
             Requester.post(
                 '/api/shoots',
                 {
-                    'gameToken': 6,
+                    'gameToken': this.gameToken,
                     'score': parseInt(score),
                     'multiplier': 3,
                     'player': {
