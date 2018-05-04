@@ -28,7 +28,7 @@ class ShootController extends RestController
 
         // TODO: Get the correct player.
         $playerName = $data['player']['name'];
-        $player = $this->getPlayerRepository()->find(17);
+        $player = $this->getPlayerRepository()->find(14);
 
         $responseData = $gameManager->addScore($game, $player, $data['multiplier'], $data['score']);
 

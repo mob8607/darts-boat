@@ -3,6 +3,7 @@ import {observer} from 'mobx-react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './global.scss';
 import NewGame from '../../views/NewGame';
+import Game from '../../views/Game';
 import Dashboard from '../../views/Dashboard';
 import NotFound from '../../views/NotFound';
 import Navigation from '../../components/Navigation';
@@ -21,6 +22,7 @@ export default class Application extends React.Component {
                     <Switch>
                         <Route exact path="/" component={Dashboard} />
                         <Route exact path="/new-game" component={NewGame} />
+                        <Route exact path="/game" component={Game} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>
