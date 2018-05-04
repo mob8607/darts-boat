@@ -1,0 +1,84 @@
+body {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 34px;
+  font-family: "Trebuchet MS";
+  background-color:black;
+  text-shadow: 2px 2px #585858;
+
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.background {
+  display: block;
+  position: absolute;
+  background: url("./images/430362.jpg") no-repeat center center;
+  filter: blur(5px);
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  height:100vh;
+  width: 100%;
+}
+
+.intro {
+  display: block;
+  position: relative;
+  color: #ffffff;
+  padding: 20px;
+  min-height: 100vh;
+  background-size: cover;
+}
+
+.intro-content {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.score {
+  display: block;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+  padding: 30px 30px 60px 30px;
+  margin-top: 40px;
+  font-size: 0;
+}
+
+.score-title {
+  display: block;
+  position: relative;
+  font-size: 22px;
+}
+
+.score-amount {
+  display: inline-block;
+  position: relative;
+  font-size: 40px;
+  width: 50%;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.score-amount-inner {
+  display: block;
+  position: relative;
+  padding: 70px 30px;
+  background-color: #79d66e;
+  border-radius: 10px;
+}
+
+.score-amount.waiting .score-amount-inner {
+  background-color: #eedd23;
+}
