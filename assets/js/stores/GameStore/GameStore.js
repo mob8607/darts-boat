@@ -6,8 +6,7 @@ class GameStore {
     @observable error;
     @observable gameToken;
 
-    @action startGame = (name, gameMode) => {
-        console.log(name, gameMode);
+    @action startGame = (players, gameMode) => {
         this.setLoading(true);
         this.setError(null);
 
@@ -18,11 +17,7 @@ class GameStore {
                     'teams': [
                         {
                             'name': 'Team 1',
-                            'players': [
-                                {
-                                    'name': 'Markus',
-                                },
-                            ],
+                            'players': players,
                         },
                         {
                             'name': 'Team 2',
@@ -33,7 +28,7 @@ class GameStore {
                             ],
                         },
                     ],
-                    'gameType': 'default',
+                    'gameType': gameMode,
                 }
             ).then((value) => {
                 this.setLoading(false);
