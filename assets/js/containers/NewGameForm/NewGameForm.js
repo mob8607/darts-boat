@@ -34,16 +34,27 @@ export default class NewGameForm extends React.Component {
         this.players.push({'name': ''});
     };
 
+    handleRemovePlayer = (playerName, index) => {
+        this.players.splice(index);
+
+        console.log(this.players.length);
+    };
+
     renderPlayerInputs = () => {
         let inputs = [];
         for (let i = 0; i < this.players.length; i++) {
             inputs.push(
-                <Input
-                    onChange={(playerName) => { this.handlePlayerNameChange(playerName, i); }}
-                    key={'playerName_' + i}
-                    name={'playerName_' + i}
-                    value={this.players[i].name}
-                />);
+                <div key={'playerNameContainer_' + i}>
+                    <Input
+                        onChange={(playerName) => { this.handlePlayerNameChange(playerName, i); }}
+                        key={'playerName_' + i}
+                        name={'playerName_' + i}
+                        value={this.players[i].name}
+                    />
+                    <Button type="button" key={'playerRemove_' + i} onClick={this.handleRemovePlayer}>
+                        Remove Player
+                    </Button>
+                </div>);
         }
 
         return inputs;
