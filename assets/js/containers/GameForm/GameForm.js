@@ -1,15 +1,14 @@
 import React from 'react';
-import {observable} from 'mobx';
 import {observer} from 'mobx-react';
-import { Redirect } from 'react-router-dom';
-import Input from '../../components/Input';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
+import GameStore from '../../stores/GameStore';
 
 @observer
 export default class GameForm extends React.Component {
-
     handleSubmit = (event) => {
+        event.preventDefault();
+        GameStore.startGame('Mr User', 'x01');
     };
 
     handleChangeGame = (event) => {
