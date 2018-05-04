@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import selectStyles from './select.scss';
 
-export default class Input extends React.PureComponent {
+export default class Select extends React.PureComponent {
     static propTypes = {
         onChange: PropTypes.func.isRequired,
         name: PropTypes.string.isRequired,

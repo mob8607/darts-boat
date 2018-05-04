@@ -7,9 +7,12 @@ import Select from '../../components/Select';
 import Button from '../../components/Button';
 
 @observer
-export default class LoginForm extends React.Component {
+export default class GameForm extends React.Component {
 
     handleSubmit = (event) => {
+    };
+
+    handleChangeGame = (event) => {
     };
 
     render() {
