@@ -5,13 +5,10 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\Player;
 use App\Entity\Team;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\Common\Persistence\ObjectRepository;
 
-class GameController extends FOSRestController implements ClassResourceInterface
+class GameController extends RestController
 {
     /**
      * @param Request $request
@@ -21,7 +18,7 @@ class GameController extends FOSRestController implements ClassResourceInterface
      */
     public function getAction(Request $request, $id)
     {
-        $example = $this->getRepository()->find($id);
+        $example = $this->getGameRepository()->find($id);
         $view = $this->view($example, 200);
 
         return $this->handleView($view);
@@ -32,12 +29,17 @@ class GameController extends FOSRestController implements ClassResourceInterface
      */
     public function cgetAction()
     {
-        $examples = $this->getRepository()->findAll();
+        $examples = $this->getGameRepository()->findAll();
         $view = $this->view($examples, 200);
 
         return $this->handleView($view);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function postAction(Request $request)
     {
         $data = json_decode($request->getContent(), true);
@@ -69,18 +71,5 @@ class GameController extends FOSRestController implements ClassResourceInterface
         $view = $this->view($responseData, 200);
 
         return $this->handleView($view);
-    }
-
-    /**
-     * @return ObjectRepository
-     */
-    private function getRepository(): ObjectRepository
-    {
-        return $this->getDoctrine()->getRepository(Game::class);
-    }
-
-    private function getEntityManager()
-    {
-        return $this->getDoctrine()->getManager();
     }
 }

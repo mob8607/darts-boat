@@ -19,3 +19,7 @@ games:
     prefix: api
     resource: App\Controller\GameController
 
+shoots:
+    type: rest
+    prefix: api
+    resource: App\Controller\ShootController

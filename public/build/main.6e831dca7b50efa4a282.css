@@ -366,22 +366,6 @@ body {
     height: 100%;
     overflow: hidden;
 }
-/**
-  Variables are named after http://chir.ag/projects/name-that-color/
-  ATTENTION ATTENTION: Please order this list alphabetically
-*/
-
-.label--1Wex8iQaVW {
-    display: block;
-    width: 100%;
-    border: 1px solid #b0ccfc;
-}
-
-.input--3n1i9LvRR1 {
-    border: 0;
-    display: block;
-    width: 100%;
-}
 .select--2ffc9B4Ia7 {
     display: block;
     width: 100%;
@@ -401,6 +385,22 @@ body {
         background: #b0ccfc;
         color: #fff;
     }
+/**
+  Variables are named after http://chir.ag/projects/name-that-color/
+  ATTENTION ATTENTION: Please order this list alphabetically
+*/
+
+.label--1Wex8iQaVW {
+    display: block;
+    width: 100%;
+    border: 1px solid #b0ccfc;
+}
+
+.input--3n1i9LvRR1 {
+    border: 0;
+    display: block;
+    width: 100%;
+}
 /**
   Variables are named after http://chir.ag/projects/name-that-color/
   ATTENTION ATTENTION: Please order this list alphabetically
