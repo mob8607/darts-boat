@@ -15,6 +15,11 @@ class GameType
     private $name;
 
     /**
+     * @var string
+     */
+    private $className;
+
+    /**
      * @return int
      */
     public function getId()
@@ -38,6 +43,26 @@ class GameType
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName(): string
+    {
+        return $this->className;
+    }
+
+    /**
+     * @param string $className
+     *
+     * @return self
+     */
+    public function setClassName(string $className): self
+    {
+        $this->className = $className;
 
         return $this;
     }

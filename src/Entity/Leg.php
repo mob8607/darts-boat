@@ -15,6 +15,11 @@ class Leg
     private $set;
 
     /**
+     * @var Player
+     */
+    private $winner;
+
+    /**
      * @return int
      */
     public function getId()
@@ -38,6 +43,26 @@ class Leg
     public function setSet($set)
     {
         $this->set = $set;
+
+        return $this;
+    }
+
+    /**
+     * @return null|Player
+     */
+    public function getWinner(): ?Player
+    {
+        return $this->winner;
+    }
+
+    /**
+     * @param null|Player $winner
+     *
+     * @return self
+     */
+    public function setWinner(?Player $winner): Leg
+    {
+        $this->winner = $winner;
 
         return $this;
     }
