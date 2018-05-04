@@ -25,6 +25,11 @@ class Shoot
     private $multiplier;
 
     /**
+     * @var int
+     */
+    private $number;
+
+    /**
      * @return int
      */
     public function getId()
@@ -88,6 +93,26 @@ class Shoot
     public function setMultiplier(int $multiplier): self
     {
         $this->multiplier = $multiplier;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param int $number
+     *
+     * @return self
+     */
+    public function setNumber(int $number): self
+    {
+        $this->number = $number;
 
         return $this;
     }

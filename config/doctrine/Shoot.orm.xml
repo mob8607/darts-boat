@@ -9,6 +9,7 @@
 
         <field name="score" type="integer" column="score" nullable="true"/>
         <field name="multiplier" type="integer" column="multiplier" nullable="false"/>
+        <field name="number" type="integer" column="number" nullable="false"/>
 
         <many-to-one field="round" target-entity="App\Entity\Round">
             <join-columns>
