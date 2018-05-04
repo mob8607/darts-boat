@@ -10,6 +10,11 @@ import { Redirect } from 'react-router-dom';
 @observer
 export default class NewGameForm extends React.Component {
     @observable playerName;
+    @observable players = [
+        {
+            'name': '',
+        },
+    ];
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -19,12 +24,28 @@ export default class NewGameForm extends React.Component {
     handleChangeGame = (event) => {
     };
 
-    handlePlayerNameChange = (playerName) => {
-        this.playerName = playerName;
+    handlePlayerNameChange = (playerName, index) => {
+        this.players[index].name = playerName;
     };
 
     handleAddPlayer = (event) => {
+        this.players.push({'name': ''});
     };
+
+    renderPlayerInputs = () => {
+        let inputs = [];
+        for (let i = 0; i < this.players.length; i++) {
+            inputs.push(
+                <Input
+                    onChange={(playerName) => { this.handlePlayerNameChange(playerName, i); }}
+                    key={'playerName_' + i}
+                    name={'playerName_' + i}
+                    value={this.players[i].name}
+                />);
+        }
+
+        return inputs;
+    }
 
     render() {
         if (GameStore.gameToken) {
@@ -35,11 +56,11 @@ export default class NewGameForm extends React.Component {
             <div>
                 {
                     <form onSubmit={this.handleSubmit}>
-                        <Select onChange={this.handleChangeGame} name="game" />
+                        <Select onChange={this.handleChangeGame} name='game' />
 
-                        <Input onChange={this.handlePlayerNameChange} name="playerName" value={this.playerName} />
+                        {this.renderPlayerInputs()}
                         <Button type="button" onClick={this.handleAddPlayer}>
-                            +
+                            Add Player
                         </Button>
 
                         <Button type="submit">
