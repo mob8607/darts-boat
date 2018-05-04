@@ -1,5 +1,5 @@
 import {observable, action} from 'mobx';
-import Requester from '../../services/Requester';
+import Requester from '../../services/Requester/index';
 
 class GameStore {
     @observable loading = false;
@@ -7,6 +7,7 @@ class GameStore {
     @observable game;
 
     @action startGame = (name, gameMode) => {
+        console.log(name, gameMode);
         this.setLoading(true);
         this.setError(null);
 
