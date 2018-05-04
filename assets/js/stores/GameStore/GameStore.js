@@ -1,13 +1,12 @@
-import {observable, action} from 'mobx';
+import { observable, action } from 'mobx';
 import Requester from '../../services/Requester/index';
 
 class GameStore {
     @observable loading = false;
     @observable error;
-    @observable game;
+    @observable gameToken;
 
-    @action startGame = (name, gameMode) => {
-        console.log(name, gameMode);
+    @action startGame = (players, gameMode) => {
         this.setLoading(true);
         this.setError(null);
 
@@ -18,22 +17,43 @@ class GameStore {
                     'teams': [
                         {
                             'name': 'Team 1',
-                            'players': [
-                                {
-                                    'name' : 'Markus',
-                                },
-                            ],
+                            'players': players,
                         },
                         {
                             'name': 'Team 2',
                             'players': [
                                 {
-                                    'name' : 'Patrick',
+                                    'name': 'Patrick',
                                 },
                             ],
                         },
                     ],
-                    'gameType': 'default',
+                    'gameType': gameMode,
+                }
+            ).then((value) => {
+                this.setLoading(false);
+                this.gameToken = value.gameToken;
+            });
+        } catch (e) {
+            this.setError(e);
+            this.setLoading();
+        }
+    };
+
+    @action submitScore = (score) => {
+        this.setLoading(true);
+        this.setError(null);
+
+        try {
+            Requester.post(
+                '/api/shoots',
+                {
+                    'gameToken': this.gameToken,
+                    'score': parseInt(score),
+                    'multiplier': 3,
+                    'player': {
+                        'name': 'Mathias'
+                    }
                 }
             ).then((value) => {
                 this.setLoading(false);

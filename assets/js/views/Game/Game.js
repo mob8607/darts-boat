@@ -1,14 +1,14 @@
 import React from 'react';
-import NewGameForm from '../../containers/NewGameForm';
+import GameForm from '../../containers/GameForm';
 
-export default class NewGame extends React.Component {
+export default class Game extends React.Component {
     componentDidMount() {
         document.title = 'Game';
     }
 
     render() {
         return (<div>
-            <NewGameForm />
+            <GameForm />
         </div>);
     }
 }
