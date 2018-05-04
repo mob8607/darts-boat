@@ -32,9 +32,21 @@ class Game
      *
      * @return self
      */
-    public function setTeams($teams)
+    public function setTeams($teams): self
     {
         $this->teams = $teams;
+
+        return $this;
+    }
+
+    /**
+     * @param Team $team
+     *
+     * @return Game
+     */
+    public function addTeam(Team $team): self
+    {
+        $this->teams[] = $team;
 
         return $this;
     }
