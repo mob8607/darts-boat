@@ -30,14 +30,12 @@ export default class NewGameForm extends React.Component {
         this.players[index].name = playerName;
     };
 
-    handleAddPlayer = (event) => {
+    handleAddPlayer = () => {
         this.players.push({'name': ''});
     };
 
-    handleRemovePlayer = (playerName, index) => {
-        this.players.splice(index);
-
-        console.log(this.players.length);
+    handleRemovePlayer = (index) => {
+        this.players = this.players.filter((player, i, players) => index !== i || players.length === 1);
     };
 
     renderPlayerInputs = () => {
@@ -51,7 +49,7 @@ export default class NewGameForm extends React.Component {
                         name={'playerName_' + i}
                         value={this.players[i].name}
                     />
-                    <Button type="button" key={'playerRemove_' + i} onClick={this.handleRemovePlayer}>
+                    <Button type="button" key={'playerRemove_' + i} onClick={(playerName) => {this.handleRemovePlayer(i)}}>
                         Remove Player
                     </Button>
                 </div>);
