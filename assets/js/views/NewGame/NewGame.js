@@ -1,5 +1,5 @@
 import React from 'react';
-import GameForm from '../../containers/NewGameForm';
+import NewGameForm from '../../containers/NewGameForm';
 
 export default class NewGame extends React.Component {
     componentDidMount() {
@@ -8,7 +8,7 @@ export default class NewGame extends React.Component {
 
     render() {
         return (<div>
-            <GameForm />
+            <NewGameForm />
         </div>);
     }
 }

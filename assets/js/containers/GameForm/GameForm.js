@@ -6,7 +6,7 @@ import Input from '../../components/Input';
 import GameStore from '../../stores/GameStore';
 
 @observer
-export default class RunningGameForm extends React.Component {
+export default class GameForm extends React.Component {
    @observable score;
 
     handleSubmit = (event) => {

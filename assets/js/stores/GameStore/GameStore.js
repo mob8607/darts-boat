@@ -53,8 +53,8 @@ class GameStore {
             Requester.post(
                 '/api/shoots',
                 {
-                    'gameToken': 9,
-                    'score': score,
+                    'gameToken': 6,
+                    'score': parseInt(score),
                     'multiplier': 3,
                     'player': {
                         'name': 'Mathias'
