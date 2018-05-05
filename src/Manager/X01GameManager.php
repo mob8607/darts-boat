@@ -39,12 +39,13 @@ class X01GameManager extends AbstractGameManager
         }
 
         // Create a new set.
-        if (!$runningSet && count($sets < $this->nrOfSets)) {
+        if (!$runningSet && count($sets) < $this->nrOfSets) {
             $runningSet = $this->createSet($game);
         }
 
         if (!$runningSet) {
-            // TODO: Throw exception because this case should not be possible.
+            // TODO: This should never happen.
+            throw new \Exception('Too many sets.');
         }
 
         // Check if there is already a running leg.
@@ -58,12 +59,13 @@ class X01GameManager extends AbstractGameManager
         }
 
         // Create a new leg.
-        if (!$runningLeg && count($legs < $this->nrOfLegs)) {
+        if (!$runningLeg && count($legs) < $this->nrOfLegs) {
             $runningLeg = $this->createLeg($runningSet);
         }
 
         if (!$runningLeg) {
-            // TODO: Throw exception because this case should not be possible.
+            // TODO: This should never happen.
+            throw new \Exception('Too many legs.');
         }
 
         $round = $this->roundRepository->findLastByLegAndPlayer($runningLeg, $player);
