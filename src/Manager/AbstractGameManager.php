@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\Game;
+use App\Entity\GameScore;
 use App\Entity\Leg;
 use App\Entity\Player;
 use App\Entity\Round;
@@ -56,9 +57,9 @@ abstract class AbstractGameManager
      * @param int $multiplier
      * @param int $score
      *
-     * @return array
+     * @return GameScore
      */
-    abstract public function addScore(Game $game, Player $player, int $multiplier, int $score): array;
+    abstract public function addScore(Game $game, Player $player, int $multiplier, int $score): GameScore;
 
     /**
      * @param bool $gameFinished

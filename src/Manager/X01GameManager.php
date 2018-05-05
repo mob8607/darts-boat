@@ -3,14 +3,17 @@
 namespace App\Manager;
 
 use App\Entity\Game;
+use App\Entity\GameScore;
 use App\Entity\Player;
 use App\Entity\Shoot;
 
 class X01GameManager extends AbstractGameManager
 {
-    private $startScore = 101;
+    private $startScore = 80;
     private $nrOfSets = 1;
+    private $nrOfSetsToWin = 1;
     private $nrOfLegs = 3;
+    private $nrOfLegsToWin = 1;
     private $nrOfShoots = 3;
 
     /**
@@ -19,13 +22,19 @@ class X01GameManager extends AbstractGameManager
      * @param int $multiplier
      * @param int $score
      *
-     * @return array
+     * @return GameScore
+     *
+     * @throws \Exception
      */
-    public function addScore(Game $game, Player $player, int $multiplier, int $score): array
+    public function addScore(Game $game, Player $player, int $multiplier, int $score): GameScore
     {
+        $result = new GameScore();
+
         // Return true for all values if the game is already finished.
         if ($game->getWinner()) {
-            return $this->getResult(true, true, true);
+            $result->setGameFinished(true);
+
+            return $result;
         }
 
         // Check if there is already a running set.
@@ -38,14 +47,11 @@ class X01GameManager extends AbstractGameManager
             }
         }
 
+        $currentNrOfSets = count($sets);
         // Create a new set.
-        if (!$runningSet && count($sets) < $this->nrOfSets) {
-            $runningSet = $this->createSet($game);
-        }
-
         if (!$runningSet) {
-            // TODO: This should never happen.
-            throw new \Exception('Too many sets.');
+            $runningSet = $this->createSet($game);
+            $currentNrOfSets += 1;
         }
 
         // Check if there is already a running leg.
@@ -58,14 +64,11 @@ class X01GameManager extends AbstractGameManager
             }
         }
 
+        $currentNrOfLegs = count($legs);
         // Create a new leg.
-        if (!$runningLeg && count($legs) < $this->nrOfLegs) {
-            $runningLeg = $this->createLeg($runningSet);
-        }
-
         if (!$runningLeg) {
-            // TODO: This should never happen.
-            throw new \Exception('Too many legs.');
+            $runningLeg = $this->createLeg($runningSet);
+            $currentNrOfLegs += 1;
         }
 
         $round = $this->roundRepository->findLastByLegAndPlayer($runningLeg, $player);
@@ -96,14 +99,23 @@ class X01GameManager extends AbstractGameManager
         $currentShootScore = $multiplier * $score;
 
         if ($currentShootScore + $totalLegScore === $this->startScore) {
-            $runningLeg->setWinner($player);
+            $runningLeg->setWinner($player->getTeam());
             $round->setTotalScore($round->getTotalScore() + $currentShootScore);
+
+            // Check if one team has won enough legs, at the moment the game ends after nrOfLegs legs.
+            if ($currentNrOfLegs === $this->nrOfLegs) {
+                $game->setWinner($player->getTeam());
+            }
+
+            $result->setLegFinished(true);
+            $result->setGameFinished(true);
+
         } else if ($currentShootScore + $totalLegScore > $this->startScore) {
             $shoot->setScore(0);
         } else {
             $round->setTotalScore($round->getTotalScore() + $currentShootScore);
         }
 
-        return $this->getResult(false, false, false);
+        return $result;
     }
 }
