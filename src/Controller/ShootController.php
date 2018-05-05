@@ -25,9 +25,11 @@ class ShootController extends RestController
         // TODO: Get the correct game manager.
         $gameManager = $this->container->get('App\Manager\X01GameManager');
 
-        // TODO: Get the correct player.
-        $playerName = $data['player']['name'];
-        $player = $this->getPlayerRepository()->findByNameAndGame($playerName, $game);
+        $playerId = $data['player']['id'];
+        $player = $this->getPlayerRepository()->find($playerId);
+        if (!$player) {
+            return new Response('', 400);
+        }
 
         $responseData = $gameManager->addScore($game, $player, $data['multiplier'], $data['score']);
 

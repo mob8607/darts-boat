@@ -28,7 +28,7 @@ class X01GameManager extends AbstractGameManager
      */
     public function addScore(Game $game, Player $player, int $multiplier, int $score): GameScore
     {
-        $result = new GameScore();
+        $result = new GameScore($game);
 
         // Return true for all values if the game is already finished.
         if ($game->getWinner()) {
@@ -115,6 +115,8 @@ class X01GameManager extends AbstractGameManager
         } else {
             $round->setTotalScore($round->getTotalScore() + $currentShootScore);
         }
+
+        $result->setRemainingScoreForTeam($player->getTeam(), $this->startScore - $totalLegScore - $shoot->getScore());
 
         return $result;
     }

@@ -5,6 +5,11 @@ namespace App\Entity;
 class GameScore
 {
     /**
+     * @var array
+     */
+    private $remainingScoreForTeams;
+
+    /**
      * @var bool
      */
     private $gameFinished = false;
@@ -13,6 +18,14 @@ class GameScore
      * @var bool
      */
     private $legFinished = false;
+
+    public function __construct(Game $game)
+    {
+        $this->remainingScoreForTeams = [];
+        foreach ($game->getTeams() as $team) {
+            $this->remainingScoreForTeams[$team->getId()] = 0;
+        }
+    }
 
     /**
      * @return bool
@@ -52,5 +65,18 @@ class GameScore
         $this->legFinished = $legFinished;
 
         return $this;
+    }
+
+    /**
+     * @param Team $team
+     * @param int $remainingScore
+     */
+    public function setRemainingScoreForTeam(Team $team, int $remainingScore)
+    {
+        foreach ($this->remainingScoreForTeams as $id => $teamData) {
+            if ($team->getId() === $id) {
+                $this->remainingScoreForTeams[$id] = $remainingScore;
+            }
+        }
     }
 }
