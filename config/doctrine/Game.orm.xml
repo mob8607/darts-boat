@@ -18,5 +18,11 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+
+        <many-to-one field="winner" target-entity="App\Entity\Player">
+            <join-columns>
+                <join-column name="idWinnerPlayers" referenced-column-name="id" nullable="true"/>
+            </join-columns>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

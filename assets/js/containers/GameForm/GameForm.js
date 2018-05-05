@@ -4,6 +4,7 @@ import { observable } from 'mobx';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import GameStore from '../../stores/GameStore';
+import { Redirect } from 'react-router-dom';
 
 @observer
 export default class GameForm extends React.Component {
@@ -17,6 +18,10 @@ export default class GameForm extends React.Component {
     };
 
     render() {
+        if (!GameStore.gameToken) {
+            return <Redirect to="/new-game" />;
+        }
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

@@ -17,12 +17,17 @@ class Round
     /**
      * @var int
      */
-    private $score;
+    private $totalScore = 0;
 
     /**
      * @var Player
      */
     private $player;
+
+    /**
+     * @var int
+     */
+    private $number;
 
     /**
      * @return int
@@ -35,19 +40,19 @@ class Round
     /**
      * @return int
      */
-    public function getScore(): int
+    public function getTotalScore(): int
     {
-        return $this->score;
+        return $this->totalScore;
     }
 
     /**
-     * @param int $score
+     * @param int $totalScore
      *
      * @return Round
      */
-    public function setScore(int $score): self
+    public function setTotalScore(int $totalScore): self
     {
-        $this->score = $score;
+        $this->totalScore = $totalScore;
 
         return $this;
     }
@@ -88,6 +93,26 @@ class Round
     public function setPlayer(Player $player): self
     {
         $this->player = $player;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumber(): int
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param int $number
+     *
+     * @return self
+     */
+    public function setNumber(int $number): self
+    {
+        $this->number = $number;
 
         return $this;
     }
