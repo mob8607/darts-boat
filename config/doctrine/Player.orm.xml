@@ -2,16 +2,16 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Entity\Player" repository-class="App\Repository\PlayerRepository" table="players">
+    <entity name="App\Entity\Player" table="players">
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
 
         <field name="name" type="string" column="name" length="255" nullable="true"/>
 
-        <many-to-one field="team" target-entity="App\Entity\Team" inversed-by="players">
+        <many-to-one field="game" target-entity="App\Entity\Game" inversed-by="players">
             <join-columns>
-                <join-column name="idTeams" referenced-column-name="id" nullable="false"/>
+                <join-column name="idGames" referenced-column-name="id" nullable="false"/>
             </join-columns>
         </many-to-one>
     </entity>

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\Player;
-use App\Entity\Team;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -47,28 +46,20 @@ class GameController extends RestController
         $game = new Game();
         $this->getEntityManager()->persist($game);
 
-        foreach ($data['teams'] as $teamData) {
-            $team = new Team();
-            $this->getEntityManager()->persist($team);
-            $team->setName($teamData['name']);
+        foreach ($data['players'] as $playerData) {
+            $player = new Player();
+            $this->getEntityManager()->persist($player);
+            $player->setName($playerData['name']);
+            $player->setGame($game);
 
-            foreach ($teamData['players'] as $playerData) {
-                $player = new Player();
-                $this->getEntityManager()->persist($player);
-                $player->setName($playerData['name']);
-                $player->setTeam($team);
-
-                $team->addPlayer($player);
-            }
-
-            $game->addTeam($team);
+            $game->addPlayer($player);
         }
 
         $this->getEntityManager()->flush();
 
         $responseData = [
             'gameToken' => $game->getId(),
-            'teams' => $game->getTeams(),
+            'players' => $game->getPlayers(),
         ];
 
         $view = $this->view($responseData, 200);

@@ -7,7 +7,7 @@ class GameScore
     /**
      * @var array
      */
-    private $remainingScoreForTeams;
+    private $remainingScoreForPlayers;
 
     /**
      * @var bool
@@ -21,9 +21,9 @@ class GameScore
 
     public function __construct(Game $game)
     {
-        $this->remainingScoreForTeams = [];
-        foreach ($game->getTeams() as $team) {
-            $this->remainingScoreForTeams[$team->getId()] = 0;
+        $this->remainingScoreForPlayers = [];
+        foreach ($game->getPlayers() as $player) {
+            $this->remainingScoreForPlayers[$player->getId()] = 0;
         }
     }
 
@@ -68,14 +68,14 @@ class GameScore
     }
 
     /**
-     * @param Team $team
+     * @param Player $player
      * @param int $remainingScore
      */
-    public function setRemainingScoreForTeam(Team $team, int $remainingScore)
+    public function setRemainingScoreForPlayer(Player $player, int $remainingScore)
     {
-        foreach ($this->remainingScoreForTeams as $id => $teamData) {
-            if ($team->getId() === $id) {
-                $this->remainingScoreForTeams[$id] = $remainingScore;
+        foreach ($this->remainingScoreForPlayers as $id => $playerData) {
+            if ($player->getId() === $id) {
+                $this->remainingScoreForPlayers[$id] = $remainingScore;
             }
         }
     }
