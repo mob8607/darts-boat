@@ -28,7 +28,7 @@ class X01GameManager extends AbstractGameManager
      */
     public function addScore(Game $game, Player $player, int $multiplier, int $score): GameScore
     {
-        $result = new GameScore();
+        $result = new GameScore($game);
 
         // Return true for all values if the game is already finished.
         if ($game->getWinner()) {
@@ -97,14 +97,13 @@ class X01GameManager extends AbstractGameManager
         }
 
         $currentShootScore = $multiplier * $score;
-
         if ($currentShootScore + $totalLegScore === $this->startScore) {
-            $runningLeg->setWinner($player->getTeam());
+            $runningLeg->setWinner($player);
             $round->setTotalScore($round->getTotalScore() + $currentShootScore);
 
             // Check if one team has won enough legs, at the moment the game ends after nrOfLegs legs.
             if ($currentNrOfLegs === $this->nrOfLegs) {
-                $game->setWinner($player->getTeam());
+                $game->setWinner($player);
             }
 
             $result->setLegFinished(true);
@@ -114,6 +113,16 @@ class X01GameManager extends AbstractGameManager
             $shoot->setScore(0);
         } else {
             $round->setTotalScore($round->getTotalScore() + $currentShootScore);
+        }
+
+        $result->setRemainingScoreForPlayer($player, $this->startScore - $totalLegScore - $shoot->getScore());
+        foreach ($game->getPlayers() as $otherPlayer) {
+            if ($otherPlayer->getId() !== $player->getId()) {
+                $result->setRemainingScoreForPlayer(
+                    $otherPlayer,
+                    $this->roundRepository->sumScoreByLegAndPlayer($runningLeg, $otherPlayer)
+                );
+            }
         }
 
         return $result;
