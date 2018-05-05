@@ -399,6 +399,91 @@ body {
     display: block;
     width: 100%;
 }
+body {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 34px;
+  font-family: "Trebuchet MS";
+  background-color:black;
+  text-shadow: 2px 2px #585858;
+
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.background--ksNqaADh2O {
+  display: block;
+  position: absolute;
+  background: url(/build/images/430362.61bd83a914b4a2eff994e3412787092b.jpg) no-repeat center center;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  pointer-events: none;
+  left: 0;
+  top: 150px;
+  height:100vh;
+  width: 100%;
+}
+
+.intro--2FlyqXbxs2 {
+  display: block;
+  position: relative;
+  color: #ffffff;
+  padding: 20px;
+  min-height: 100vh;
+  background-size: cover;
+}
+
+.intro-content--nBhq0CVX5E {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.score--2b8fT5Xkkv {
+  display: block;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+  padding: 30px 30px 60px 30px;
+  margin-top: 40px;
+  font-size: 0;
+}
+
+.score-title--crXPpFU4D5 {
+  display: block;
+  position: relative;
+  font-size: 22px;
+}
+
+.score-amount--1GG1PlLwRw {
+  display: inline-block;
+  position: relative;
+  font-size: 40px;
+  width: 50%;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.score-amount-inner--2TabnPLcet {
+  display: block;
+  position: relative;
+  padding: 70px 30px;
+  background-color: #79d66e;
+  border-radius: 10px;
+}
+
+.score-amount--1GG1PlLwRw.waiting--kluZwPfR9K .score-amount-inner--2TabnPLcet {
+  background-color: #eedd23;
+}
 /**
   Variables are named after http://chir.ag/projects/name-that-color/
   ATTENTION ATTENTION: Please order this list alphabetically

@@ -18,17 +18,10 @@ export default class Game extends React.Component {
         if (annyang) {
             annyang.setLanguage('de-DE');
             let commands = {
-                'hello': function(){
+                'hello': function () {
                     console.log('hi');
                 },
-                'wurf *score': (newScore) => {
-                    let newScoreNumber = parseInt(newScore);
-                    if (typeof newScoreNumber !== 'number') {
-                        alert('only numbers pls');
-                    } else {
-                        this.score = newScore;
-                    }
-                },
+                'wurf *score': (newScore) => this.updateScore(newScore),
 
                 'senden': () => {
                     GameStore.submitScore(this.score);
@@ -46,6 +39,22 @@ export default class Game extends React.Component {
             annyang.start({autoRestart: false, continuous: true});
         }
     }
+
+    updateScore = (newScore) => {
+        console.log('score', newScore);
+        console.log(this.score);
+        this.score = newScore;
+        console.log(this.score);
+    };
+
+    renderPlayers = () => {
+        if (GameStore.players) {
+
+            GameStore.players.map((player) => {
+                console.log(player);
+            })
+        }
+    };
 
     render() {
         return (<div>
@@ -70,6 +79,7 @@ export default class Game extends React.Component {
                                 points your dart hit.
                             </p>
                         </div>
+                        {this.renderPlayers()}
 
                         <div className={gameStyles.scoreAmount + ' js-score-amount waiting'}>
                             <h2>Player One</h2>

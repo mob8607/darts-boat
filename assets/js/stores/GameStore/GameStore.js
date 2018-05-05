@@ -5,6 +5,7 @@ class GameStore {
     @observable loading = false;
     @observable error;
     @observable gameToken;
+    @observable players;
 
     @action startGame = (players, gameMode) => {
         this.setLoading(true);
@@ -33,6 +34,8 @@ class GameStore {
             ).then((value) => {
                 this.setLoading(false);
                 this.gameToken = value.gameToken;
+                console.log(value);
+                //this.players =
             });
         } catch (e) {
             this.setError(e);
