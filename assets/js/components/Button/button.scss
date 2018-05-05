@@ -5,10 +5,12 @@ $buttonActiveColor: $white;
 $buttonBorderColor: $sail;
 
 .button {
-    border: 1px solid $buttonBorderColor;
-
-    &:active {
-        background: $buttonActiveBackgroundColor;
-        color: $buttonActiveColor;
-    }
+    border: none;
+    background-color: #79d66e;
+    text-shadow: 2px 2px #585858;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
 }

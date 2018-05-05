@@ -118,10 +118,12 @@ class X01GameManager extends AbstractGameManager
         $result->setRemainingScoreForPlayer($player, $this->startScore - $totalLegScore - $shoot->getScore());
         foreach ($game->getPlayers() as $otherPlayer) {
             if ($otherPlayer->getId() !== $player->getId()) {
-                $result->setRemainingScoreForPlayer(
-                    $otherPlayer,
-                    $this->roundRepository->sumScoreByLegAndPlayer($runningLeg, $otherPlayer)
-                );
+                $otherPlayerTotalLegScore = $this->roundRepository->sumScoreByLegAndPlayer($runningLeg, $otherPlayer)['totalLegScore'];
+                if (!$otherPlayerTotalLegScore) {
+                    $otherPlayerTotalLegScore = 0;
+                }
+
+                $result->setRemainingScoreForPlayer($otherPlayer, $otherPlayerTotalLegScore);
             }
         }
 
