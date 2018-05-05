@@ -15,7 +15,7 @@ class Set
     private $game;
 
     /**
-     * @var Player
+     * @var Team
      */
     private $winner;
 
@@ -48,19 +48,19 @@ class Set
     }
 
     /**
-     * @return null|Player
+     * @return null|Team
      */
-    public function getWinner(): ?Player
+    public function getWinner(): ?Team
     {
         return $this->winner;
     }
 
     /**
-     * @param null|Player $winner
+     * @param null|Team $winner
      *
      * @return self
      */
-    public function setWinner(?Player $winner): Set
+    public function setWinner(?Team $winner): Set
     {
         $this->winner = $winner;
 

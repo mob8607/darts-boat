@@ -13,9 +13,9 @@
             </join-columns>
         </many-to-one>
 
-        <many-to-one field="winner" target-entity="App\Entity\Player">
+        <many-to-one field="winner" target-entity="App\Entity\Team">
             <join-columns>
-                <join-column name="idWinnerPlayers" referenced-column-name="id" nullable="true"/>
+                <join-column name="idWinnerTeams" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
     </entity>
