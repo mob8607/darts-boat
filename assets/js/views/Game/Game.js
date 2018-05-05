@@ -41,10 +41,7 @@ export default class Game extends React.Component {
     }
 
     updateScore = (newScore) => {
-        console.log('score', newScore);
-        console.log(this.score);
         this.score = newScore;
-        console.log(this.score);
     };
 
     renderPlayers = () => {
@@ -52,14 +49,13 @@ export default class Game extends React.Component {
         if (GameStore.players) {
 
             GameStore.players.map((player) => {
-                console.log(player);
                 elements.push(
                     <div key={player.id} className={gameStyles.scoreAmount + ' js-score-amount waiting'}>
                         <h2>{player.name}</h2>
 
                         <div className={gameStyles.scoreAmountInner}>
                             <div className={gameStyles.scoreAmountItem + ' hit'}>
-                                120 Points!
+                                {player.remaining_score}
                             </div>
                         </div>
                     </div>

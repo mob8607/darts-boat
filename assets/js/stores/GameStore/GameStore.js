@@ -22,12 +22,7 @@ class GameStore {
                 let players = [];
                 this.setLoading(false);
                 this.gameToken = value.gameToken;
-                value.players.map((player, index) => {
-                    player.isActive = false;
-                    player.shootCounter = 0;
-                    if (index === 0) {
-                        player.isActive = true;
-                    }
+                value.game_score.players.map((player) => {
                     players.push(player);
                 });
 
@@ -44,7 +39,7 @@ class GameStore {
         this.setError(null);
 
         let activePlayer = this.players.filter((player) => {
-            return player.isActive;
+            return player.is_active;
         });
 
         try {
@@ -58,41 +53,13 @@ class GameStore {
                 }
             ).then((value) => {
                 this.setLoading(false);
-                this.increaseShootCounter();
-                console.log(value);
+                this.players = value.game_score.players;
             });
         } catch (e) {
             this.setError(e);
             this.setLoading();
         }
     };
-
-    @action increaseShootCounter() {
-        this.players.map((player) => {
-            if (player.isActive) {
-                player.shootCounter++;
-            }
-
-            if (player.shootCounter > 3) {
-                this.makeNextActive();
-            }
-        })
-    }
-
-    @action makeNextActive() {
-        this.players.map((player, index) => {
-            if (player.isActive) {
-                player.isActive = false;
-                player.shootCounter = 0;
-
-                if (index === this.players.length) {
-                    this.players[0].isActive = true;
-                } else {
-                    this.players[index + 1].isActive = true;
-                }
-            }
-        })
-    }
 
     @action logout = () => {
         this.setUser(null);
