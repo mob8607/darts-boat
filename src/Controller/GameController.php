@@ -66,7 +66,10 @@ class GameController extends RestController
 
         $this->getEntityManager()->flush();
 
-        $responseData = ['gameToken' => $game->getId()];
+        $responseData = [
+            'gameToken' => $game->getId(),
+            'teams' => $game->getTeams(),
+        ];
 
         $view = $this->view($responseData, 200);
 
