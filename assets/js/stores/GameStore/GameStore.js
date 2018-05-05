@@ -5,7 +5,7 @@ class GameStore {
     @observable loading = false;
     @observable error;
     @observable gameToken;
-    @observable players;
+    @observable players = [];
 
     @action startGame = (players, gameMode) => {
         this.setLoading(true);
@@ -15,27 +15,20 @@ class GameStore {
             Requester.post(
                 '/api/games',
                 {
-                    'teams': [
-                        {
-                            'name': 'Team 1',
-                            'players': players,
-                        },
-                        {
-                            'name': 'Team 2',
-                            'players': [
-                                {
-                                    'name': 'Patrick',
-                                },
-                            ],
-                        },
-                    ],
+                    'players': players,
                     'gameType': gameMode,
                 }
             ).then((value) => {
+                let players = [];
                 this.setLoading(false);
                 this.gameToken = value.gameToken;
-                console.log(value);
-                //this.players =
+                value.teams.map((team) => {
+                    team.players.map((player) => {
+                        players.push(player);
+                    })
+                });
+
+                this.players = players;
             });
         } catch (e) {
             this.setError(e);

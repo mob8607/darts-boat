@@ -48,12 +48,26 @@ export default class Game extends React.Component {
     };
 
     renderPlayers = () => {
+        let elements = [];
         if (GameStore.players) {
 
             GameStore.players.map((player) => {
                 console.log(player);
+                elements.push(
+                    <div key={player.id} className={gameStyles.scoreAmount + ' js-score-amount waiting'}>
+                        <h2>{player.name}</h2>
+
+                        <div className={gameStyles.scoreAmountInner}>
+                            <div className={gameStyles.scoreAmountItem + ' hit'}>
+                                120 Points!
+                            </div>
+                        </div>
+                    </div>
+                );
             })
         }
+
+        return elements;
     };
 
     render() {
@@ -80,26 +94,6 @@ export default class Game extends React.Component {
                             </p>
                         </div>
                         {this.renderPlayers()}
-
-                        <div className={gameStyles.scoreAmount + ' js-score-amount waiting'}>
-                            <h2>Player One</h2>
-
-                            <div className={gameStyles.scoreAmountInner}>
-                                <div className={gameStyles.scoreAmountItem + ' hit'}>
-                                    120 Points!
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={gameStyles.scoreAmount + ' js-score-amount'}>
-                            <h2>Player Two</h2>
-
-                            <div className={gameStyles.scoreAmountInner}>
-                                <div className={gameStyles.scoreAmountItem + ' no-score'}>
-                                    Throw the first dart to begin!
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
