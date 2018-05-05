@@ -26,7 +26,7 @@ class GameScore
         $isFirst = true;
         $this->players = [];
         foreach ($game->getPlayers() as $player) {
-            $this->players[] = [
+            $this->players[$player->getId()] = [
                 'id' => $player->getId(),
                 'name' => $player->getName(),
                 'remaining_score' => X01GameManager::START_SCORE,
@@ -86,6 +86,19 @@ class GameScore
         foreach ($this->players as $id => $playerData) {
             if ($player->getId() === $id) {
                 $this->players[$id]['remaining_score'] = $remainingScore;
+            }
+        }
+    }
+
+    /**
+     * @param Player $player
+     */
+    public function setActivePlayer(Player $player)
+    {
+        foreach ($this->players as $id => $playerData) {
+            $this->players[$id]['is_active'] = false;
+            if ($player->getId() === $id) {
+                $this->players[$id]['is_active'] = true;
             }
         }
     }
