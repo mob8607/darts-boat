@@ -1,11 +1,12 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import {observable} from 'mobx';
+import { Redirect } from 'react-router-dom';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import GameStore from '../../stores/GameStore';
-import { Redirect } from 'react-router-dom';
+import newGameFormStyles from './newGameForm.scss';
 
 @observer
 export default class NewGameForm extends React.Component {
@@ -42,12 +43,13 @@ export default class NewGameForm extends React.Component {
         let inputs = [];
         for (let i = 0; i < this.players.length; i++) {
             inputs.push(
-                <div key={'playerNameContainer_' + i}>
+                <div key={'playerNameContainer_' + i} className={newGameFormStyles.playerContainer}>
                     <Input
                         onChange={(playerName) => { this.handlePlayerNameChange(playerName, i); }}
                         key={'playerName_' + i}
                         name={'playerName_' + i}
                         value={this.players[i].name}
+                        placeholder="Player Name"
                     />
                     <Button
                         type="button"
