@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Manager\X01GameManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,7 +27,7 @@ class ShootController extends RestController
 
         // TODO: Get the correct player.
         $playerName = $data['player']['name'];
-        $player = $this->getPlayerRepository()->find(14);
+        $player = $this->getPlayerRepository()->findByNameAndGame($playerName, $game);
 
         $responseData = $gameManager->addScore($game, $player, $data['multiplier'], $data['score']);
 

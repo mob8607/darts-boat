@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Entity\Player" table="players">
+    <entity name="App\Entity\Player" repository-class="App\Repository\PlayerRepository" table="players">
         <id name="id" type="integer" column="id">
             <generator strategy="IDENTITY"/>
         </id>
