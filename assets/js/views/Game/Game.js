@@ -36,7 +36,7 @@ export default class Game extends React.Component {
 
                 'remove score now': function () {
                     console.log('remove score now');
-                }
+                },
             };
 
             // Add our commands to annyang
@@ -49,8 +49,6 @@ export default class Game extends React.Component {
 
     render() {
         return (<div>
-            <GameForm score={this.score} setScore={(score) => this.score = score}/>
-
             <section className={gameStyles.background}></section>
 
             <section className={gameStyles.intro}>
@@ -69,6 +67,10 @@ export default class Game extends React.Component {
                                 amount of
                                 points your dart hit.
                             </p>
+                        </div>
+
+                        <div className={gameStyles.gameForm}>
+                            <GameForm score={this.score} setScore={(score) => this.score = score} />
                         </div>
 
                         <div className={gameStyles.scoreAmount + ' js-score-amount waiting'}>
