@@ -1,45 +1,37 @@
 import React from 'react';
 import GameForm from '../../containers/GameForm';
-import GameStyles from './_game.scss';
+import gameStyles from './_game.scss';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
+import GameStore from '../../stores/GameStore';
 
+@observer
 export default class Game extends React.Component {
+    @observable score;
+
     componentDidMount() {
         document.title = 'Game';
+        this.loadSpeachRecognition();
     }
 
     loadSpeachRecognition() {
         if (annyang) {
-            var scorePlayer1 = 0;
-            var scorePlayer2 = 0;
-            var activePlayer1 = true;
-            var activePlayer2 = false;
-
-            // Let's define our first command. First the text we expect, and then the function it should call
-            var commands = {
-                'add score *score': function (score) {
-                    score = parseInt(score);
-                    console.log(score);
-                    if (typeof score === 'number') {
-                        if (activePlayer1 === true) {
-                            scorePlayer1 = scorePlayer1 + score;
-                            activePlayer1 = false;
-                            activePlayer2 = true;
-
-                            console.log('player one: ' + activePlayer1);
-                            console.log('player two: ' + activePlayer2);
-                        }
-
-                        if (activePlayer2 === true) {
-                            scorePlayer2 = scorePlayer2 + score;
-                            activePlayer1 = true;
-                            activePlayer2 = false;
-
-                            console.log('player one: ' + activePlayer1);
-                            console.log('player two: ' + activePlayer2);
-                        }
-                    } else {
+            annyang.setLanguage('de-DE');
+            let commands = {
+                'hello': function(){
+                    console.log('hi');
+                },
+                'wurf *score': (newScore) => {
+                    let newScoreNumber = parseInt(newScore);
+                    if (typeof newScoreNumber !== 'number') {
                         alert('only numbers pls');
+                    } else {
+                        this.score = newScore;
                     }
+                },
+
+                'senden': () => {
+                    GameStore.submitScore(this.score);
                 },
 
                 'remove score now': function () {
@@ -56,45 +48,44 @@ export default class Game extends React.Component {
     }
 
     render() {
-        this.loadSpeachRecognition();
-
         return (<div>
-            <GameForm/>
+            <GameForm score={this.score} setScore={(score) => this.score = score}/>
 
-            <section class="background"></section>
+            <section className={gameStyles.background}></section>
 
-            <section class="intro">
-                <div class="intro-content">
-                    <div class="intro-title">
+            <section className={gameStyles.intro}>
+                <div className={gameStyles.introContent}>
+                    <div className={gameStyles.introTitle}>
                         <h1>Welcome to Vart!</h1>
                         <p>
                             The voice recognition web application that will finally make dart enjoyable for you
                         </p>
                     </div>
 
-                    <div class="score">
-                        <div class="score-title">
+                    <div className={gameStyles.score}>
+                        <div className={gameStyles.scoreTitle}>
                             <p>
-                                You can add a single dart score by using the voice command "add score" following the amount of
+                                You can add a single dart score by using the voice command "add score" following the
+                                amount of
                                 points your dart hit.
                             </p>
                         </div>
 
-                        <div class="score-amount waiting js-score-amount">
+                        <div className={gameStyles.scoreAmount + ' js-score-amount waiting'}>
                             <h2>Player One</h2>
 
-                            <div class="score-amount-inner">
-                                <div class="score-amount-item hit">
+                            <div className={gameStyles.scoreAmountInner}>
+                                <div className={gameStyles.scoreAmountItem + ' hit'}>
                                     120 Points!
                                 </div>
                             </div>
                         </div>
 
-                        <div class="score-amount js-score-amount">
+                        <div className={gameStyles.scoreAmount + ' js-score-amount'}>
                             <h2>Player Two</h2>
 
-                            <div class="score-amount-inner">
-                                <div class="score-amount-item no-score">
+                            <div className={gameStyles.scoreAmountInner}>
+                                <div className={gameStyles.scoreAmountItem + ' no-score'}>
                                     Throw the first dart to begin!
                                 </div>
                             </div>
