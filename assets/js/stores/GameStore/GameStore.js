@@ -19,14 +19,9 @@ class GameStore {
                     'gameType': gameMode,
                 }
             ).then((value) => {
-                let players = [];
                 this.setLoading(false);
                 this.gameToken = value.gameToken;
-                value.game_score.players.map((player) => {
-                    players.push(player);
-                });
-
-                this.players = players;
+                this.players = value.game_score.players;
             });
         } catch (e) {
             this.setError(e);
