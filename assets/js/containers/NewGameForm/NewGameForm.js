@@ -49,7 +49,11 @@ export default class NewGameForm extends React.Component {
                         name={'playerName_' + i}
                         value={this.players[i].name}
                     />
-                    <Button type="button" key={'playerRemove_' + i} onClick={(playerName) => {this.handleRemovePlayer(i)}}>
+                    <Button
+                        type="button"
+                        key={'playerRemove_' + i}
+                        onClick={(playerName) => { this.handleRemovePlayer(i); }}
+                    >
                         Remove Player
                     </Button>
                 </div>);
