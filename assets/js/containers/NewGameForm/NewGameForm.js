@@ -52,7 +52,7 @@ export default class NewGameForm extends React.Component {
                     <Button
                         type="button"
                         key={'playerRemove_' + i}
-                        onClick={(playerName) => { this.handleRemovePlayer(i); }}
+                        onClick={() => { this.handleRemovePlayer(i); }}
                     >
                         Remove Player
                     </Button>
