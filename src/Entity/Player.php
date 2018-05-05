@@ -15,9 +15,9 @@ class Player
     private $name;
 
     /**
-     * @var Team
+     * @var Game
      */
-    private $team;
+    private $game;
 
     /**
      * @return int
@@ -48,21 +48,21 @@ class Player
     }
 
     /**
-     * @return Team
+     * @return Game
      */
-    public function getTeam(): Team
+    public function getGame(): Game
     {
-        return $this->team;
+        return $this->game;
     }
 
     /**
-     * @param Team $team
+     * @param Game $game
      *
      * @return self
      */
-    public function setTeam($team)
+    public function setGame(Game $game): self
     {
-        $this->team = $team;
+        $this->game = $game;
 
         return $this;
     }

@@ -9,10 +9,10 @@ class Game
      */
     private $id;
 
-    private $teams;
+    private $players;
 
     /**
-     * @var Team
+     * @var Player
      */
     private $winner;
 
@@ -27,49 +27,49 @@ class Game
     /**
      * @return mixed
      */
-    public function getTeams()
+    public function getPlayers()
     {
-        return $this->teams;
+        return $this->players;
     }
 
     /**
-     * @param mixed $teams
+     * @param mixed $players
      *
      * @return self
      */
-    public function setTeams($teams): self
+    public function setPlayers($players)
     {
-        $this->teams = $teams;
+        $this->players = $players;
 
         return $this;
     }
 
     /**
-     * @param Team $team
+     * @param Player $player
      *
-     * @return Game
+     * @return $this
      */
-    public function addTeam(Team $team): self
+    public function addPlayer(Player $player)
     {
-        $this->teams[] = $team;
+        $this->players[] = $player;
 
         return $this;
     }
 
     /**
-     * @return null|Team
+     * @return null|Player
      */
-    public function getWinner(): ?Team
+    public function getWinner(): ?Player
     {
         return $this->winner;
     }
 
     /**
-     * @param null|Team $winner
+     * @param null|Player $winner
      *
      * @return self
      */
-    public function setWinner(?Team $winner): Game
+    public function setWinner(?Player $winner): Game
     {
         $this->winner = $winner;
 

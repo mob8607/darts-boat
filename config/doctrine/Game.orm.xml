@@ -8,20 +8,9 @@
             <generator strategy="IDENTITY"/>
         </id>
 
-        <many-to-many field="teams" inversed-by="games" target-entity="App\Entity\Team">
-            <join-table name="game_teams">
-                <join-columns>
-                    <join-column name="idGames" referenced-column-name="id"/>
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="idTeams" referenced-column-name="id"/>
-                </inverse-join-columns>
-            </join-table>
-        </many-to-many>
-
-        <many-to-one field="winner" target-entity="App\Entity\Team">
+        <many-to-one field="winner" target-entity="App\Entity\Player">
             <join-columns>
-                <join-column name="idWinnerTeams" referenced-column-name="id" nullable="true"/>
+                <join-column name="idWinnerPlayers" referenced-column-name="id" nullable="true"/>
             </join-columns>
         </many-to-one>
     </entity>
