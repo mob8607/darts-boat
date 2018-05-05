@@ -31,11 +31,11 @@ class ShootController extends RestController
             return new Response('', 400);
         }
 
-        $responseData = $gameManager->addScore($game, $player, $data['multiplier'], $data['score']);
+        $gameScore = $gameManager->addScore($game, $player, $data['multiplier'], $data['score']);
 
         $this->getEntityManager()->flush();
 
-        $view = $this->view($responseData, 200);
+        $view = $this->view(['game_score' => $gameScore], 200);
 
         return $this->handleView($view);
     }

@@ -2,17 +2,19 @@
 
 namespace App\Entity;
 
+use App\Manager\X01GameManager;
+
 class GameScore
 {
-    /**
-     * @var array
-     */
-    private $remainingScoreForPlayers;
-
     /**
      * @var bool
      */
     private $gameFinished = false;
+
+    /**
+     * @var array
+     */
+    private $players;
 
     /**
      * @var bool
@@ -21,9 +23,17 @@ class GameScore
 
     public function __construct(Game $game)
     {
-        $this->remainingScoreForPlayers = [];
+        $isFirst = true;
+        $this->players = [];
         foreach ($game->getPlayers() as $player) {
-            $this->remainingScoreForPlayers[$player->getId()] = 0;
+            $this->players[] = [
+                'id' => $player->getId(),
+                'name' => $player->getName(),
+                'remaining_score' => X01GameManager::START_SCORE,
+                'is_active' => $isFirst,
+            ];
+
+            $isFirst = false;
         }
     }
 
@@ -73,9 +83,9 @@ class GameScore
      */
     public function setRemainingScoreForPlayer(Player $player, int $remainingScore)
     {
-        foreach ($this->remainingScoreForPlayers as $id => $playerData) {
+        foreach ($this->players as $id => $playerData) {
             if ($player->getId() === $id) {
-                $this->remainingScoreForPlayers[$id] = $remainingScore;
+                $this->players[$id]['remaining_score'] = $remainingScore;
             }
         }
     }
