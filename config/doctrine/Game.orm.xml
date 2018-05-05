@@ -8,6 +8,8 @@
             <generator strategy="IDENTITY"/>
         </id>
 
+        <one-to-many field="players" target-entity="App\Entity\Player" mapped-by="idGames"/>
+
         <many-to-one field="winner" target-entity="App\Entity\Player">
             <join-columns>
                 <join-column name="idWinnerPlayers" referenced-column-name="id" nullable="true"/>
