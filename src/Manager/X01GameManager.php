@@ -127,6 +127,9 @@ class X01GameManager extends AbstractGameManager
             }
         }
 
+
+          $result->updateActivePlayer($player, $shootCount);
+
         return $result;
     }
 }

@@ -61,7 +61,7 @@ class GameController extends RestController
 
         $responseData = [
             'gameToken' => $game->getId(),
-            'game_score' => new GameScore($game),
+            'game_score' => new GameScore($game, true),
         ];
 
         $view = $this->view($responseData, 200);

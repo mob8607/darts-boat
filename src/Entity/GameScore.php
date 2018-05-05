@@ -21,19 +21,16 @@ class GameScore
      */
     private $legFinished = false;
 
-    public function __construct(Game $game)
+    public function __construct(Game $game, $firstActive = false)
     {
-        $isFirst = true;
         $this->players = [];
         foreach ($game->getPlayers() as $player) {
             $this->players[] = [
                 'id' => $player->getId(),
                 'name' => $player->getName(),
                 'remaining_score' => X01GameManager::START_SCORE,
-                'is_active' => $isFirst,
+                'is_active' => $firstActive,
             ];
-
-            $isFirst = false;
         }
     }
 
@@ -87,6 +84,28 @@ class GameScore
             if ($player->getId() === $playerData['id']) {
                 $playerData['remaining_score'] = $remainingScore;
             }
+        }
+    }
+
+    public function updateActivePlayer($player, $shootCounter)
+    {
+        $counter = 0;
+        $nextPlayerActive = false;
+        foreach ($this->players as &$playerData) {
+            if ($nextPlayerActive) {
+                $playerData['is_active'] = true;
+                $nextPlayerActive = false;
+            } else if ($playerData['id'] === $player->getId() && $shootCounter === 2) {
+                $playerData['is_active'] = false;
+                $nextPlayerActive = true;
+            } else if ($playerData['id'] === $player->getId()) {
+                $playerData['is_active'] = true;
+            }
+            if ($nextPlayerActive && $counter === count($this->players) - 1) {
+                $this->players[0]['is_active'] = true;
+                $nextPlayerActive = false;
+            }
+            $counter++;
         }
     }
 }
