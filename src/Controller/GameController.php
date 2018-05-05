@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\Player;
+use App\Manager\X01GameManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -57,9 +58,20 @@ class GameController extends RestController
 
         $this->getEntityManager()->flush();
 
+        $players = $game->getPlayers();
+        $resultPlayers = [];
+        foreach ($players as $player) {
+            $resultPlayers[] = [
+                'id' => $player->getId(),
+                'name' => $player->getName(),
+                'remaining_score' => X01GameManager::START_SCORE,
+            ];
+        }
+
         $responseData = [
             'gameToken' => $game->getId(),
-            'players' => $game->getPlayers(),
+            'players' => $resultPlayers,
+
         ];
 
         $view = $this->view($responseData, 200);

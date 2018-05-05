@@ -9,7 +9,7 @@ use App\Entity\Shoot;
 
 class X01GameManager extends AbstractGameManager
 {
-    private $startScore = 80;
+    const START_SCORE = 301;
     private $nrOfSets = 1;
     private $nrOfSetsToWin = 1;
     private $nrOfLegs = 3;
@@ -97,7 +97,7 @@ class X01GameManager extends AbstractGameManager
         }
 
         $currentShootScore = $multiplier * $score;
-        if ($currentShootScore + $totalLegScore === $this->startScore) {
+        if ($currentShootScore + $totalLegScore === self::START_SCORE) {
             $runningLeg->setWinner($player);
             $round->setTotalScore($round->getTotalScore() + $currentShootScore);
 
@@ -109,13 +109,13 @@ class X01GameManager extends AbstractGameManager
             $result->setLegFinished(true);
             $result->setGameFinished(true);
 
-        } else if ($currentShootScore + $totalLegScore > $this->startScore) {
+        } else if ($currentShootScore + $totalLegScore > self::START_SCORE) {
             $shoot->setScore(0);
         } else {
             $round->setTotalScore($round->getTotalScore() + $currentShootScore);
         }
 
-        $result->setRemainingScoreForPlayer($player, $this->startScore - $totalLegScore - $shoot->getScore());
+        $result->setRemainingScoreForPlayer($player, self::START_SCORE - $totalLegScore - $shoot->getScore());
         foreach ($game->getPlayers() as $otherPlayer) {
             if ($otherPlayer->getId() !== $player->getId()) {
                 $otherPlayerTotalLegScore = $this->roundRepository->sumScoreByLegAndPlayer($runningLeg, $otherPlayer)['totalLegScore'];
