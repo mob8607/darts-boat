@@ -22,10 +22,12 @@ class GameStore {
                 let players = [];
                 this.setLoading(false);
                 this.gameToken = value.gameToken;
-                value.teams.map((team) => {
-                    team.players.map((player) => {
-                        players.push(player);
-                    })
+                value.players.map((player, index) => {
+                    player.isActive = false;
+                    if (index === 0) {
+                        player.isActive = true;
+                    }
+                    players.push(player);
                 });
 
                 this.players = players;
@@ -40,16 +42,18 @@ class GameStore {
         this.setLoading(true);
         this.setError(null);
 
+        let activePlayer = this.players.filter((player) => {
+            return player.isActive;
+        });
+
         try {
             Requester.post(
                 '/api/shoots',
                 {
                     'gameToken': this.gameToken,
                     'score': parseInt(score),
-                    'multiplier': 3,
-                    'player': {
-                        'name': 'Mathias'
-                    }
+                    'multiplier': 1,
+                    'player': activePlayer[0]
                 }
             ).then((value) => {
                 this.setLoading(false);
