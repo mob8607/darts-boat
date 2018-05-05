@@ -123,7 +123,7 @@ class X01GameManager extends AbstractGameManager
                     $otherPlayerTotalLegScore = 0;
                 }
 
-                $result->setRemainingScoreForPlayer($otherPlayer, $otherPlayerTotalLegScore);
+                $result->setRemainingScoreForPlayer($otherPlayer, self::START_SCORE - $otherPlayerTotalLegScore);
             }
         }
 
